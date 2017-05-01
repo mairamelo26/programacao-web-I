@@ -1,0 +1,150 @@
+<html>
+	<title>
+		Jogo da Memória
+	</title>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<link rel="stylesheet"  type="text/css" href="estilo.css">
+		<link rel="shortcut icon" type="image/png" href="imagens/game.png"/>
+		<style>
+			div#memory_board{
+				background:#CCC;
+				border:#999 1px solid;
+				width:800px;
+				height:540px;
+				padding:24px;
+				margin:0px auto;
+			}
+			div#memory_board > div{
+				background: url(tile_bg.jpg) no-repeat;
+				border:#000 1px solid;
+				width:71px;
+				height:71px;
+				float:left;
+				margin:10px;
+				padding:20px;
+				font-size:64px;
+				cursor:pointer;
+				text-align:center;
+			}
+		</style>
+		<script>
+<!-- 			var memory_array = new Array();
+<!-- 				memory_array = new Image(); -->
+				
+<!-- 				memory_array [0].src = 'imagens/game.png'; --> -->
+			var memory_array = ['A','A','B','B','C','C','D','D','E','E','F','F','G','G','H','H','I','I','J','J','K','K','L','L'];
+			var memory_values = [];
+			var memory_tile_ids = [];
+			var tiles_flipped = 0;
+			Array.prototype.memory_tile_shuffle = function(){
+				var i = this.length, j, temp;
+				while(--i > 0){
+					j = Math.floor(Math.random() * (i+1));
+					temp = this[j];
+					this[j] = this[i];
+					this[i] = temp;
+				}
+			}
+			function newBoard(){
+				tiles_flipped = 0;
+				var output = '';
+				memory_array.memory_tile_shuffle();
+				for(var i = 0; i < memory_array.length; i++){
+					output += '<div id="tile_'+i+'" onclick="memoryFlipTile(this,\''+memory_array[i]+'\')"></div>';
+				}
+				document.getElementById('memory_board').innerHTML = output;
+			}
+			function memoryFlipTile(tile,val){
+				if(tile.innerHTML == "" && memory_values.length < 2){
+					tile.style.background = '#FFF';
+					tile.innerHTML = val;
+					if(memory_values.length == 0){
+						memory_values.push(val);
+						memory_tile_ids.push(tile.id);
+					} else if(memory_values.length == 1){
+						memory_values.push(val);
+						memory_tile_ids.push(tile.id);
+						if(memory_values[0] == memory_values[1]){
+							tiles_flipped += 2;
+							// Clear both arrays
+							memory_values = [];
+							memory_tile_ids = [];
+							// Check to see if the whole board is cleared
+							if(tiles_flipped == memory_array.length){
+								alert("Board cleared... generating new board");
+								document.getElementById('memory_board').innerHTML = "";
+								newBoard();
+							}
+						} else {
+							function flip2Back(){
+								// Flip the 2 tiles back over
+								var tile_1 = document.getElementById(memory_tile_ids[0]);
+								var tile_2 = document.getElementById(memory_tile_ids[1]);
+								tile_1.style.background = 'url(tile_bg.jpg) no-repeat';
+								tile_1.innerHTML = "";
+								tile_2.style.background = 'url(tile_bg.jpg) no-repeat';
+								tile_2.innerHTML = "";
+								// Clear both arrays
+								memory_values = [];
+								memory_tile_ids = [];
+							}
+							setTimeout(flip2Back, 700);
+						}
+					}
+				}
+			}
+		</script>
+	</head>
+	
+	<body>
+	
+		<div class="main">
+			<header style="background:black">
+				<center><h1 style="color:white; padding-top:20px; padding-bottom:20px">Jogo da Memória</h1></center>
+			</header>
+	
+			<!-- MENU INÍCIO -->	
+			<div id="mySidenav" class="sidenav">
+			  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+			  <a href="home.html">Home</a>
+			  <a href="sobre.html">Sobre</a>
+			  <a href="jogo_memoria.html">Memória</a>
+			  <a href="jogo_velha.html">Velha</a>
+			  <a href="contato.html">Contato</a>
+			</div>
+		
+			<div id="main">
+				<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
+				</br></br>
+			</div>
+			
+			<script>
+				function openNav() {
+					document.getElementById("mySidenav").style.width = "250px";
+					document.getElementById("main").style.marginLeft = "250px";
+				}
+
+				function closeNav() {
+					document.getElementById("mySidenav").style.width = "0";
+					document.getElementById("main").style.marginLeft= "0";
+				}
+			</script>
+			<!-- MENU FIM -->
+			
+			<center>
+				<h1> Vamos começar? </h1> </br>
+				<p> Então você quer jogar este jogo de memória? Este é bem simples, e ao invés de figuras temos letras. </p>
+				<p> Clique no quadrado para virar a figura e depois selecione outro para saber se são iguais. </p>
+			</center>
+			</br></br>
+			
+			
+			<div id="memory_board"></div>
+			<script>newBoard();</script>
+			
+		</div>
+		
+	</body>
+	
+</html>

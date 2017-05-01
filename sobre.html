@@ -1,0 +1,48 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<link rel="stylesheet"  type="text/css" href="estilo.css">
+		<link rel="shortcut icon" type="image/png" href="imagens/game.png"/>
+	</head>
+	<body>
+		<div class="main">
+			<header style="background:black">
+				<center><h1 style="color:white; padding-top:20px; padding-bottom:20px">Sobre mim</h1></center>
+			</header>
+			<!-- MENU INÍCIO -->	
+			<div id="mySidenav" class="sidenav">
+			  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+			  <a href="home.html">Home</a>
+			  <a href="sobre.html">Sobre</a>
+			  <a href="jogo_memoria.html">Memória</a>
+			  <a href="jogo_velha.html">Velha</a>
+			  <a href="contato.html">Contato</a>
+			</div>
+		
+			<div id="main">
+				<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
+				</br></br>
+			</div>
+			
+			<script>
+				function openNav() {
+					document.getElementById("mySidenav").style.width = "250px";
+					document.getElementById("main").style.marginLeft = "250px";
+				}
+
+				function closeNav() {
+					document.getElementById("mySidenav").style.width = "0";
+					document.getElementById("main").style.marginLeft= "0";
+				}
+			</script>
+			<!-- MENU FIM -->
+			<div style="align:center">
+				<h2 style="text-align: center"> Olá!</h2>
+				<p style="text-align: center"> Sou estudante do 5º ano de Sistemas da Informação e este é meu trabalho para o curso de Programação Web 1 ministrada pelo professor Picini</p>
+				</br></br>
+				<center><img src="imagens/photo.jpg" alt="Maira Melo" align="middle" style="width:154px;height:160px;"></center>
+			</div>
+		</div>
+		
+	</body>
+</html> 
